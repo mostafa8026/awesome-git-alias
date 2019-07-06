@@ -1,8 +1,8 @@
 # awesome-git-alias
 All the awesome git aliases will come here.
 
-# difference by count of current branch with all other branches:
-It return all the branches which its behind value is not zero. if you want to see all the branches pass `-a`.
+# git diffla [-a]:
+difference by count of current branch with all other branches. It return all the branches which its behind value is not zero. if you want to see all the branches pass `-a`.
 
     [alias]
         diffla = "!f() { \
