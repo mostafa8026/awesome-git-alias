@@ -4,6 +4,24 @@ All the awesome git aliases will come here.
 # all aliases together
 
     [alias]
+    	diffla = "!f() { \
+				echo current branch is: $(git rev-parse --abbrev-ref HEAD); \
+				echo $1; \
+				echo format: ------------------------------------ \\<behind\\>:\\<ahead\\>; \
+				for branch in $(git for-each-ref --format='%(refname)'); do \
+					AHEAD=$(git log --oneline $(git rev-parse --abbrev-ref HEAD) ^"$branch" | echo $(wc -l)); \
+					BEHIND=$(git log --oneline "$branch" ^$(git rev-parse --abbrev-ref HEAD) | echo $(wc -l));  \
+					if [ ! -z "$1" ]; then \
+						if [ $1 == "-a" ]; then \
+							echo $branch ---- \\<$BEHIND\\>:\\<$AHEAD\\>; \
+						fi \
+					else \
+						if [ $BEHIND != "0" ]; then \
+							echo $branch ---- \\<$AHEAD\\>:\\<$BEHIND\\>; \
+						fi \
+					fi \
+				done; \
+			}; f"
         tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	logl = log --pretty=oneline
 	ba = "!f() { \
