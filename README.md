@@ -1,8 +1,7 @@
 # awesome-git-alias
 All the awesome git aliases will come here.
 
-# git diffla [-a]:
-difference by count of current branch with all other branches. It return all the branches which its behind value is not zero. if you want to see all the branches pass `-a`.
+# all aliases together
 
     [alias]
         tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
@@ -13,6 +12,12 @@ difference by count of current branch with all other branches. It return all the
 		                OUTPUT=$(echo $(git rev-list --left-right --count $LEFT...$RIGHT) "$LEFT $RIGHT" | awk '{print $4\" is \"$1\" behind and \"$2\" ahead of \"$3}');\
 		                echo $OUTPUT; \
 		}; f"
+	sb = status -sb
+
+# git diffla [-a]
+difference by count of current branch with all other branches. It return all the branches which its behind value is not zero. if you want to see all the branches pass `-a`.
+
+    [alias]
 	diffla = "!f() { \
 				echo current branch is: $(git rev-parse --abbrev-ref HEAD); \
 				echo $1; \
@@ -31,5 +36,4 @@ difference by count of current branch with all other branches. It return all the
 					fi \
 				done; \
 			}; f"
-	sb = status -sb
 
